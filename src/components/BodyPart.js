@@ -30,10 +30,10 @@ const BodyPart = ({ item, setBodyPart, bodyPart }) => {
               gap: "47px",
             }
       }
-      onClick={() => {
-        setBodyPart(item);
-        window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
-      }}
+      //   onClick={() => {
+      //     setBodyPart(item);
+      //     window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
+      //   }}
     >
       <img
         src={Icon}
@@ -47,7 +47,6 @@ const BodyPart = ({ item, setBodyPart, bodyPart }) => {
         color="#3A1212"
         textTransform="capitalize"
       >
-        {" "}
         {item}
       </Typography>
     </Stack>
