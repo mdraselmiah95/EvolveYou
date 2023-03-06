@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import { Box, Stack, Typography } from "@mui/material";
+import ExerciseCard from "./ExerciseCard";
 
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
   console.log(exercises);
@@ -9,7 +10,18 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
       <Typography variant="h3" mb="46px">
         Showing Results
       </Typography>
-      <Stack></Stack>
+      <Stack
+        direction="row"
+        sx={{ gap: { lg: "110px", sx: "50px" } }}
+        flexWrap="wrap
+      "
+        justifyContent="cen
+      "
+      >
+        {exercises.map((exercise, index) => (
+          <ExerciseCard exercise={exercise} index={index} />
+        ))}
+      </Stack>
     </Box>
   );
 };
