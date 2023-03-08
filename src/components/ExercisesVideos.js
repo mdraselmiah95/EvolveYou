@@ -2,6 +2,7 @@ import React from "react";
 import { Typography, Box, Stack } from "@mui/material";
 
 const ExercisesVideos = ({ exerciseVideos, name }) => {
+  if (!exerciseVideos.length) return "Loading...";
   return (
     <Box sx={{ marginTop: { lg: "203px", xs: "20px" } }} p="20px">
       <Typography
@@ -16,7 +17,7 @@ const ExercisesVideos = ({ exerciseVideos, name }) => {
         </span>{" "}
         exercise videos
       </Typography>
-      {/* <Stack
+      <Stack
         sx={{ flexDirection: { lg: "row" }, gap: { lg: "110px", xs: "0px" } }}
         justifyContent="flex-start"
         flexWrap="wrap"
@@ -49,7 +50,7 @@ const ExercisesVideos = ({ exerciseVideos, name }) => {
             </Box>
           </a>
         ))}
-      </Stack> */}
+      </Stack>
     </Box>
   );
 };
