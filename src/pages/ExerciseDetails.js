@@ -19,7 +19,7 @@ const ExerciseDetails = () => {
   useEffect(() => {
     const fetchExercisesData = async () => {
       const exerciseDetailsData = await fetchData(
-        `${baseURLExercise} /exercises/${id}`,
+        `${baseURLExercise}/exercises/exercise/${id}`,
         exerciseOption
       );
 
@@ -28,11 +28,9 @@ const ExerciseDetails = () => {
     fetchExercisesData();
   }, [id]);
 
-  console.log(exerciseDetail);
-
   return (
     <Box sx={{ mt: { lg: "96px", xs: "60px" } }}>
-      <Details />
+      <Details exerciseDetail={exerciseDetail} />
       <ExercisesVideos />
       <SimilarExercises />
     </Box>
