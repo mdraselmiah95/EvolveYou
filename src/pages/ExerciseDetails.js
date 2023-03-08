@@ -15,6 +15,8 @@ const baseURLYoutube = "https://youtube-search-and-download.p.rapidapi.com";
 const ExerciseDetails = () => {
   const [exerciseDetail, setExerciseDetail] = useState({});
   const [exerciseVideos, setExerciseVideos] = useState([]);
+  const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
+  const [equipmentExercises, setEquipmentExercises] = useState([]);
 
   const { id } = useParams();
 
@@ -33,8 +35,19 @@ const ExerciseDetails = () => {
         youtubeOptions
       );
       setExerciseVideos(exerciseVideosData.contents);
-    };
 
+      const targetMuscleExercisesData = await fetchData(
+        `${baseURLExercise}/exercises/target/${exerciseDetailsData.target}`,
+        exerciseOption
+      );
+      setTargetMuscleExercises(targetMuscleExercisesData);
+
+      const equipmentExercisesData = await fetchData(
+        `${baseURLExercise}/exercises/equipment/${exerciseDetailsData.equipment}`,
+        exerciseOption
+      );
+      setEquipmentExercises(equipmentExercisesData);
+    };
     fetchExercisesData();
   }, [id, exerciseDetail.name]);
 
@@ -45,7 +58,10 @@ const ExerciseDetails = () => {
         exerciseVideos={exerciseVideos}
         name={exerciseDetail.name}
       />
-      <SimilarExercises />
+      <SimilarExercises
+        targetMuscleExercises={targetMuscleExercises}
+        equipmentExercises={equipmentExercises}
+      />
     </Box>
   );
 };
