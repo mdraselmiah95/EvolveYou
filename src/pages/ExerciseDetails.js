@@ -19,6 +19,8 @@ const ExerciseDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     const fetchExercisesData = async () => {
       const exerciseDetailsData = await fetchData(
         `${baseURLExercise}/exercises/exercise/${id}`,
@@ -26,12 +28,11 @@ const ExerciseDetails = () => {
       );
       setExerciseDetail(exerciseDetailsData);
 
-      const exerciseVideoData = await fetchData(
-        `${baseURLYoutube}/search?q=${exerciseDetail.name}`,
+      const exerciseVideosData = await fetchData(
+        `${baseURLYoutube}/search?query=${exerciseDetailsData.name} exercise`,
         youtubeOptions
       );
-
-      setExerciseVideos(exerciseVideoData);
+      setExerciseVideos(exerciseVideosData.contents);
     };
 
     fetchExercisesData();
