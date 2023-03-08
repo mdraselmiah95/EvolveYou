@@ -6,6 +6,7 @@ import TargetImage from "../assets/icons/target.png";
 import EquipmentImage from "../assets/icons/equipment.png";
 
 const Details = ({ exerciseDetail }) => {
+  console.log(exerciseDetail);
   const { bodyPart, gifUrl, name, target, equipment } = exerciseDetail;
 
   const extraDetail = [
@@ -47,7 +48,12 @@ const Details = ({ exerciseDetail }) => {
           improve your <br /> mood and gain energy.
         </Typography>
         {extraDetail?.map((item) => (
-          <Stack key={item.name} direction="row" gap="24px" alignItems="center">
+          <Stack
+            key={item.name || item.id}
+            direction="row"
+            gap="24px"
+            alignItems="center"
+          >
             <Button
               sx={{
                 background: "#FFF2DB",
