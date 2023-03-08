@@ -3,10 +3,11 @@ import Pagination from "@mui/material/Pagination";
 import { Box, Stack, Typography } from "@mui/material";
 import ExerciseCard from "./ExerciseCard";
 import { exerciseOption, fetchData } from "../utils/fetchData";
+import Loader from "./Loader";
 
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const exercisePerPage = 9;
+  const [exercisesPerPage] = useState(6);
 
   useEffect(() => {
     const baseURL = "https://exercisedb.p.rapidapi.com/exercises";
@@ -29,8 +30,8 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   }, [bodyPart, setExercises]);
 
   // Pagination
-  const indexOfLastExercise = currentPage * exercisePerPage;
-  const indexOfFirstExercise = indexOfLastExercise - exercisePerPage;
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
   const currentExercises = exercises.slice(
     indexOfFirstExercise,
     indexOfLastExercise
@@ -41,6 +42,8 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
     window.scrollTo({ top: 1800, behavior: "smooth" });
   };
+
+  if (!currentExercises.length) return <Loader />;
 
   return (
     <Box id="exercises" sx={{ mt: { lg: "109px" } }} mt="50px" p="20px">
@@ -68,7 +71,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
             color="standard"
             shape="rounded"
             defaultPage={1}
-            count={Math.ceil(exercises.length / exercisePerPage)}
+            count={Math.ceil(exercises.length / exercisesPerPage)}
             page={currentPage}
             onChange={paginate}
             size="large"
